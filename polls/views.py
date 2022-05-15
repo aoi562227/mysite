@@ -2,11 +2,12 @@ from ast import arg
 from re import template
 from select import select
 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from django.core.mail import send_mail
 
 from .models import Choice, Question
 
@@ -36,6 +37,9 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
+    
+    
+
 
 
 def vote(request, question_id):
@@ -65,3 +69,14 @@ def get_queryset(self):
     return Question.objects.filter(
         pub_date__lte=timezone.now()
     ).order_by('-pub_date')[:5]
+
+def send_mail(request):
+        if request.method == "POST":
+            name = request.POST.get('name')
+            subject = request.POST.get('subject')
+            message = request.POST.get('message')
+            print(name, subject, message)
+
+            return HttpResponseRedirect(reverse('polls:results'))
+        else:
+            HttpResponse('Invalid request')
