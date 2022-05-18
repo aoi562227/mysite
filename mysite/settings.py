@@ -131,6 +131,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'lee_yechan@hufs.ac.kr'
 EMAIL_HOST_PASSWORD = '980329'
-SERVER_EMAIL = 'lee_yechan@hufs.ac.kr'
-
-DEFAULT_FROM_EMAIL  = 'lee_yechan@hufs.ac.kr'
+SERVER_EMAIL = 'example@email.com'
+DEFAULT_FROM_EMAIL  = 'example@email.com'
